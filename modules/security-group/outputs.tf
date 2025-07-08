@@ -1,4 +1,6 @@
-output "security_group_id" {
-  description = "The ID of the security group created for the participant."
-  value = aws_security_group.this.id
+output "security_group_ids" {
+  description = "Map of security group IDs by participant name"
+  value = {
+    for k, v in aws_security_group.this : k => v.id
+  }
 }

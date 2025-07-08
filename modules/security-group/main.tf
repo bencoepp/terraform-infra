@@ -1,7 +1,8 @@
 resource "aws_security_group" "this" {
+  for_each = toset(var.participants)
   vpc_id = var.vpc
-  description = "Security group for ${var.participant}"
-  name = "${var.participant}-sg"
+  description = "Security group for ${each.value}"
+  name = "${each.value}-sg"
 
   dynamic "ingress" {
     for_each = var.ingress
@@ -24,6 +25,6 @@ resource "aws_security_group" "this" {
   }
 
   tags = {
-      Name = "${var.participant}-sg"
+      Name = "${each.value}-sg"
   }
 }

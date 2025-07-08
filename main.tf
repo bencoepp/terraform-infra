@@ -33,13 +33,9 @@ module "vpc" {
 }
 
 module "security_group" {
-  for_each = {
-    for p in var.participants : p.name => p
-  }
-
   source = "./modules/security-group"
   vpc = module.vpc.id
-  participant = each.value.name
+  participants = [for p in var.participants : p.name]
 }
 
 module "ec2" {
@@ -49,4 +45,6 @@ module "ec2" {
 
   source = "./modules/ec2-instance"
   instance_name = each.value.key
+  security_group = module.security_group.security_group_ids
+  vpc = module.vpc.id
 }

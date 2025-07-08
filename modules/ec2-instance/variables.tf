@@ -9,6 +9,16 @@ variable "instance_name" {
   type        = string
 }
 
+variable "vpc" {
+  description = "ID der VPC, in der die Instanz entsteht"
+  type        = string
+}
+
+variable "security_group" {
+  description = "ID der Sicherheitsgruppe, die der Instanz zugeordnet wird"
+  type        = string
+}
+
 variable "instance_type" {
   description = "Größe der EC2-Instanz"
   type        = string

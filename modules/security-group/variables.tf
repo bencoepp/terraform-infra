@@ -3,9 +3,9 @@ variable "vpc" {
   type        = string
 }
 
-variable "participant" {
-    description = "The name of the participant for whom the security group is created."
-    type        = string
+variable "participants" {
+    description = "The name of the participants for whom the security groups is created."
+    type        = list(string)
 }
 
 variable "ingress" {
@@ -34,5 +34,12 @@ variable "egress" {
     to_port   = number
     cidr_blocks = list(string)
   }))
-  default     = []
+  default     = [
+    {
+        protocol    = "-1"
+        from_port   = 0
+        to_port     = 0
+        cidr_blocks = []
+    }
+  ]
 }
