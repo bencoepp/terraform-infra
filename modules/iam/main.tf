@@ -14,3 +14,10 @@ resource "aws_iam_group_membership" "seminar_group_membership" {
   users = [for user in aws_iam_user.user : user.name]
   name  = "${var.seminar}-group-membership"
 }
+
+resource "aws_iam_user_login_profile" "login_profile" {
+  for_each                = var.participants
+  user                    = aws_iam_user.user[each.key].name
+  password_reset_required = true
+  password_length         = 20
+}

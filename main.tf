@@ -65,3 +65,9 @@ module "iam" {
   participants = [for p in var.participants : p.name]
   seminar = var.seminar_name
 }
+
+output "password" {
+  value = module.iam.initial_console_passwords
+    sensitive = true
+  description = "Initial console passwords for the IAM users created for the seminar participants."
+}
