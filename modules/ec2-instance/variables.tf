@@ -9,8 +9,8 @@ variable "instance_name" {
   type        = string
 }
 
-variable "vpc" {
-  description = "ID der VPC, in der die Instanz entsteht"
+variable "ssh_key" {
+  description = "Name des SSH-Schlüssels, der für die EC2-Instanz verwendet wird"
   type        = string
 }
 

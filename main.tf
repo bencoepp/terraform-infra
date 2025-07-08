@@ -39,6 +39,14 @@ module "security_group" {
   seminar = var.seminar_name
 }
 
+module "ssh" {
+  for_each = {for p in var.participants : p.name => p}
+
+  source = "./modules/ssh"
+  seminar = var.seminar_name
+  participant = each.value.name
+}
+
 module "ec2" {
   for_each = {
     for inst in local.ec2_instances : inst.key => inst
@@ -47,7 +55,7 @@ module "ec2" {
   source = "./modules/ec2-instance"
   instance_name = each.value.key
   security_group = module.security_group.security_group_ids[each.value.name]
-  vpc = module.vpc.vpc_id
   seminar = var.seminar_name
   subnet = module.vpc.subnet_id
+  ssh_key = "${var.seminar_name}-${each.value.name}"
 }

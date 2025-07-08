@@ -23,3 +23,5 @@ terraform.rc
 *.tfvars
 *.tfvars.json
 .idea
+
+*.pem
