@@ -59,3 +59,9 @@ module "ec2" {
   subnet = module.vpc.subnet_id
   ssh_key = "${var.seminar_name}-${each.value.name}"
 }
+
+module "iam" {
+  source = "./modules/iam"
+  participants = [for p in var.participants : p.name]
+  seminar = var.seminar_name
+}
