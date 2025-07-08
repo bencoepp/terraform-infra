@@ -27,6 +27,20 @@ locals {
   ])
 }
 
+module "vpc" {
+  source = "./modules/vpc"
+  name = "vpc-${var.seminar_name}"
+}
+
+module "security_group" {
+  for_each = {
+    for p in var.participants : p.name => p
+  }
+
+  source = "./modules/security-group"
+  vpc = module.vpc.id
+  participant = each.value.name
+}
 
 module "ec2" {
   for_each = {

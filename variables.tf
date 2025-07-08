@@ -8,3 +8,9 @@ variable "participants" {
     k8s_cluster = bool
   }))
 }
+
+variable "seminar_name" {
+  description = "Name des Seminars"
+  type        = string
+  default     = "default-seminar"
+}

@@ -1,4 +1,4 @@
 output "id" {
   description = "The ID of the VPC"
-  value = ""
+  value = aws_vpc.this.id
 }
