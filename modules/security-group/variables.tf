@@ -43,3 +43,8 @@ variable "egress" {
     }
   ]
 }
+
+variable "seminar" {
+  description = "Name of the seminar for which the security group is created."
+  type        = string
+}

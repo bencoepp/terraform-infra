@@ -26,5 +26,6 @@ resource "aws_security_group" "this" {
 
   tags = {
       Name = "${each.value}-sg"
+      Seminar = var.seminar
   }
 }

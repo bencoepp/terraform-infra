@@ -14,8 +14,18 @@ variable "vpc" {
   type        = string
 }
 
+variable "subnet" {
+  description = "The subnet in which the security group will be created."
+  type        = string
+}
+
 variable "security_group" {
   description = "ID der Sicherheitsgruppe, die der Instanz zugeordnet wird"
+  type        = string
+}
+
+variable "seminar" {
+  description = "Name des Seminars, in dem die Instanz erstellt wird"
   type        = string
 }
 

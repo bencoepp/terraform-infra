@@ -3,3 +3,9 @@ variable "name" {
     type        = string
     default     = "default"
 }
+
+variable "region-availability_zone" {
+    description = "AWS region for the VPC"
+    type        = string
+    default     = "eu-central-1a"
+}
