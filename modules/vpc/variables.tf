@@ -10,8 +10,13 @@ variable "region-availability_zone" {
     default     = "eu-central-1a"
 }
 
-variable "name" {
-    description = "Name of the VPC EKS"
+variable "seminar" {
+    description = "Name of the seminar"
     type        = string
-    default     = "default"
+}
+
+variable "azs" {
+    description = "Exactly two AZs in the region"
+    type        = list(string)
+    default     = ["eu-central-1a", "eu-central-1b"]
 }
