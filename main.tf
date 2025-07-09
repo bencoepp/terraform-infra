@@ -5,6 +5,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    local = {
+      source  = "hashicorp/local"
+      version = "2.5.2"
+    }
   }
 }
 
@@ -67,18 +71,13 @@ module "iam" {
   seminar = var.seminar_name
 }
 
-module "eks" {
-  source = "./modules/eks"
-  vpc_id = module.vpc.eks_vpc_id
-  cluster_name = "showcase"
-  seminar = var.seminar_name
-  subnet_ids = module.vpc.eks_subnet_ids
-}
-
-
-
 output "password" {
   value = module.iam.initial_console_passwords
     sensitive = true
   description = "Initial console passwords for the IAM users created for the seminar participants."
+}
+
+output "ips" {
+  description = "The public IP addresses of the EC2 instances created for the seminar participants."
+  value = flatten(values(module.ec2)[*].public_ip)
 }

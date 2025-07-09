@@ -1,0 +1,23 @@
+---
+- name: Manage etc/hosts file
+  hosts: all
+  become: true
+  gather_facts: true
+
+  vars:
+    hosts_entries:
+      - ip: "10.1.1.10"
+        names: [ "intranet", "intranet.local" ]
+      - ip: "10.1.1.11"
+        names: [ "db", "db.local" ]
+
+  tasks:
+    - name: Update /etc/hosts file
+      ansible.builtin.blockinfile:
+        path: /etc/hosts
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
+        block: |
+          {% for item in hosts_entries %}
+          {{ item.ip }} {{ item.names | join(' ') }}
+          {% endfor %}
+        create: false
