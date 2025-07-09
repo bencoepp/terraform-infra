@@ -4,8 +4,8 @@ resource  = "eks" "eks"
 cluster_name    = "my-eks-cluster"
   cluster_version = "1.30"
 
-  vpc_id     = module.vpc.
-  subnet_ids = module.vpc.private_subnets
+  vpc_id     = module.vpc.eks.id
+  subnet_ids = module.vpc.eks-subnet.id
 
   cluster_name    = "my-cluster"
   cluster_version = "1.29"

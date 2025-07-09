@@ -55,4 +55,14 @@ resource = "aws_vpc" "eks" {
   }
 }
 
+resource "aws_subnet" "eks-subnet" {
+  vpc_id = aws_subnet.eks.id
+  cidr_block = "10.0.1.0/24"
+  availability_zone = var.region-availability_zone
+  
+  tags = {
+      Name = var.name
+  }
+}
+
 

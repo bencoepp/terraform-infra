@@ -12,3 +12,8 @@ output "vpc_eks-id" {
   description = "The ID of the EKS-VPC"
   value = aws_vpc.eks.id
 }
+
+output "subnet_id-eks" {
+  description = "The ID of the subnet EKS"
+  value = aws_subnet.eks-subnet.id
+}

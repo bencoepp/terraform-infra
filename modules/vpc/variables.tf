@@ -9,3 +9,9 @@ variable "region-availability_zone" {
     type        = string
     default     = "eu-central-1a"
 }
+
+variable "name" {
+    description = "Name of the VPC EKS"
+    type        = string
+    default     = "default"
+}
