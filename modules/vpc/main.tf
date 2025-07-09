@@ -38,3 +38,21 @@ resource "aws_route_table_association" "public" {
   subnet_id      = aws_subnet.public.id
   route_table_id = aws_route_table.public.id
 }
+
+resource = "aws_vpc" "eks" {
+
+  name = "eks-vpc"
+  cidr = "10.0.0.0/16"
+
+  
+  enable_nat_gateway = true
+  single_nat_gateway = true
+  enable_dns_support = true
+  enable_dns_hostnames = true
+
+   tags = {
+      Name = var.name
+  }
+}
+
+

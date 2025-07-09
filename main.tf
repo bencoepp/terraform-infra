@@ -32,6 +32,8 @@ module "vpc" {
   name = "vpc-${var.seminar_name}"
 }
 
+
+
 module "security_group" {
   source = "./modules/security-group"
   vpc = module.vpc.vpc_id
@@ -70,4 +72,9 @@ output "password" {
   value = module.iam.initial_console_passwords
     sensitive = true
   description = "Initial console passwords for the IAM users created for the seminar participants."
+}
+
+module "eks" {
+  source = ".modules/eks"
+  vpc_id = module.vpc.vpc_eks-id
 }
